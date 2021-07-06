@@ -64,7 +64,8 @@ ___
 *If you want to change the frequency of checking updates, you can edit the number listed [here](/main.py#L43), in seconds.*
 
 *By default, updates will check every 60 seconds.*
-
+___
+![image](https://user-images.githubusercontent.com/68661509/124527045-287aa700-de0d-11eb-8d24-6287aabc6871.png)
 
 
 
