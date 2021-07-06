@@ -1,22 +1,24 @@
 # RSS To Discord
 
 A simple script that transmits RSS feeds to your Discord channel.
-
-## how to deploy
 ___
-###**get your bot token**
+## how to deploy
+
+### get your bot token
 
 go to discord, and create a new channel.
+
 edit the channel setting.
+
 in ``Integrations``, create a new ``Webhook``, and copy the link.
 
-###**set up the script**
+### set up the script
 
 + install the [requirements](/requirements.txt) file:
   
 ```pip3 install -r requirements.txt```
 
-+ create a new file, `config.ini` and enter the following params:
++ create a new file: `config.ini`, and enter the following params:
 
 ```
 [discord]
@@ -42,7 +44,7 @@ for example:
 
 And... you are ready to start!
 
-> you can set to print every update, by remove the `h` [here](/main.py#L32).
+> you can set to print every update, by remove the `#` [here](/main.py#L32).
 ___
 ## Run the script
 + give permissions to the script:
