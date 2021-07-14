@@ -1,2 +1,5 @@
 config.ini
 venv
+.idea
+time.txt
+nohup.out

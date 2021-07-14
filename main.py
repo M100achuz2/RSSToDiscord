@@ -13,13 +13,13 @@ webhook = Webhook.partial(int(_config.get("discord", "id")),
                           _config.get("discord", "token"),
                           adapter=RequestsWebhookAdapter())
 
-url = "https://apkcombo.com/latest-updates/feed"
+url = "https://www.apkmirror.com/feed/"
 
 # set-up the previous time
+TIME = ""
 try:
     TIME = open("time.txt", "r").read()
 except FileNotFoundError:
-    TIME = ""
     file = open("time.txt", "w")  # Create a file to save time afterwards
     file.close()
 
@@ -29,16 +29,25 @@ def feed(update: feedparser.util.FeedParserDict):
     for post in update.entries:
         webhook.send(f"{post.title}\n{post.link}\n{post.published}",
                      username=update.feed.title)
+        sleep(1)
         # print(f"{post['title']}\n{post['link']}\n{post['published']}")
 
 
 if __name__ == '__main__':
     try:
         while True:
+            print(TIME)
             update = feedparser.parse(url)
+
+            if update.bozo_exception:
+                print(update.bozo_exception)
+                exit(1)
+
+            print(update)
+            print(update.feed.updated)
             if update.feed.updated != TIME:
                 feed(update)
-                TIME = update.updated
+                TIME = update.feed.updated
             print(TIME)
             sleep(60)
     finally:
