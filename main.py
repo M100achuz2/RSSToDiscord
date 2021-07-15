@@ -3,6 +3,7 @@ import feedparser
 from time import sleep
 from discord import Webhook, RequestsWebhookAdapter
 import configparser
+import json
 
 # import the discord token & id
 _config = configparser.ConfigParser()
@@ -13,14 +14,15 @@ webhook = Webhook.partial(int(_config.get("discord", "id")),
                           _config.get("discord", "token"),
                           adapter=RequestsWebhookAdapter())
 
-url = "https://www.apkmirror.com/feed/"
+url = ["https://www.apkmirror.com/feed/"]
+time_file = "time.json"
 
 # set-up the previous time
-TIME = ""
+TIME = dict()
 try:
-    TIME = open("time.txt", "r").read()
+    TIME = json.load(open(time_file, "r"))
 except FileNotFoundError:
-    file = open("time.txt", "w")  # Create a file to save time afterwards
+    file = open(time_file, "w")  # Create a file to save time afterwards
     file.close()
 
 
